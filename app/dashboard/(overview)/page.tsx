@@ -6,12 +6,6 @@ import { Suspense } from 'react';
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton } from '@/app/ui/skeletons';
  
 export default async function Page() {
-    // const totalPaidInvoices = (await fetchCardData()).totalPaidInvoices;
-    // const totalPendingInvoices = (await fetchCardData()).totalPendingInvoices;
-    // const numberOfInvoices = (await fetchCardData()).numberOfInvoices;
-    // const numberOfCustomers = (await fetchCardData()).numberOfCustomers;
-
-
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>Dashboard</h1>
