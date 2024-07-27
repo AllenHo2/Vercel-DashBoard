@@ -2,13 +2,15 @@
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
 
-  function handleSearch(term: string) {
+  const handleSearch = useDebouncedCallback((term) => {
+    console.log(`Search ... ${term}`);
     const params = new URLSearchParams(searchParams);
     if(term) {
       params.set("query", term);    
@@ -16,7 +18,7 @@ function Search({ placeholder }: { placeholder: string }) {
       params.delete("query");
     }
     replace(`${pathName}?${params.toString()}`); //without this it would generate a page not found 404 error
-  }
+  }, 300);
   return (
     <div className="relative flex flex-1 flex-shrink-0">
       <label htmlFor="search" className="sr-only">
